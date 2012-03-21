@@ -43,7 +43,7 @@ You don't have to define the redis_key_name, the default is
 All the mails being delivered will be written into the redis storage. You can use
 
 ```ruby
-ActionMailer::Base.cached_deliveries
+RedisCacheMailerDelivery::Deliveries.all
 ```
 
 to access all the mails
