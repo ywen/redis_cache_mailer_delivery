@@ -21,4 +21,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency(%q<guard-rspectacle>)
   gem.add_development_dependency(%q<growl>)
   gem.add_development_dependency(%q<rb-fsevent>)
+  gem.add_development_dependency(%q<rake>)
 end
