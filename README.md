@@ -1,5 +1,8 @@
 # RedisCacheMailerDelivery
 
+[![Build Status](https://secure.travis-ci.org/ywen/redis_cache_mailer_delivery.png)](http://travis-ci.org/ywen/redis_cache_mailer_delivery)
+
+
 This gem is inspired by https://github.com/p0deje/action_mailer_cache_delivery.
 
 If you are using Resque for sending mails asynchronously, and you want to test the mail sending asynchronously in your integration tests, then you can use this gem for just that.
