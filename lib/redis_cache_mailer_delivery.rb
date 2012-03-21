@@ -1,3 +1,4 @@
+require 'action_mailer'
 require 'redis_cache_mailer_delivery/version'
 require 'redis_cache_mailer_delivery/mail/cache_delivery'
 require 'redis_cache_mailer_delivery/action_mailer/base'
@@ -11,5 +12,5 @@ module RedisCacheMailerDelivery
 
   end # << self
 end # RedisCacheMailerDelivery
-require 'redis_cache_mailer_delivery/railtie' if defined?(Rails)
+require 'redis_cache_mailer_delivery/railtie'
 require "redis_cache_mailer_delivery/version"

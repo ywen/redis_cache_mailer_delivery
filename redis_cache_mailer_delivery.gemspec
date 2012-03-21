@@ -16,4 +16,9 @@ Gem::Specification.new do |gem|
   gem.version       = RedisCacheMailerDelivery::VERSION
   gem.add_runtime_dependency(%q<redis>)
   gem.add_runtime_dependency(%q<redis-objects>)
+  gem.add_runtime_dependency(%q<actionmailer>)
+  gem.add_development_dependency(%q<rspec>)
+  gem.add_development_dependency(%q<guard-rspectacle>)
+  gem.add_development_dependency(%q<growl>)
+  gem.add_development_dependency(%q<rb-fsevent>)
 end
