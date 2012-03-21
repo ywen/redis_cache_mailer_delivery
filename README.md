@@ -1,5 +1,7 @@
 # RedisCacheMailerDelivery
 
+This gem is inspired by https://github.com/p0deje/action_mailer_cache_delivery.
+
 If you are using Resque for sending mails asynchronously, and you want to test the mail sending asynchronously in your integration tests, then you can use this gem for just that.
 
 The gem adds a new delivery method to the ActionMailer and it stores the marshaled Mail::Message being delivered into a redis list which can be fetched by any other processes.
@@ -32,8 +34,16 @@ config.action_mailer.redis_cache_settings = { :redis_key_name => "a_key_name_for
 You don't have to define the redis_key_name, the default is 
 
 ```ruby
-redis_cache_mailer_delivery:mail_messages
+"redis_cache_mailer_delivery:mail_messages"
 ```
+
+All the mails being delivered will be written into the redis storage. You can use
+
+```ruby
+ActionMailer::Base.cached_deliveries
+```
+
+to access all the mails
 
 ## Contributing
 
