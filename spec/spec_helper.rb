@@ -17,6 +17,10 @@ RSpec.configure do |config|
   # out = ENV['CC_BUILD_ARTIFACTS'] || "#{Rails.root}"
   # config.output_stream = File.open("#{out}/UnitTests/index.html", "w") if config.formatter_class.name =~ /HtmlFormatter/
 
+  config.before(:each) do
+    RedisCacheMailerDelivery.install
+    Redis.current = Redis.new(:host => '127.0.0.1', :port => 6379)
+  end
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, comment the following line or assign false

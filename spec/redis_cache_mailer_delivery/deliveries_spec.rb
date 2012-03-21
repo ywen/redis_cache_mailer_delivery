@@ -2,10 +2,6 @@ require File.expand_path(File.join(File.dirname(__FILE__), "..", "spec_helper"))
 
 module RedisCacheMailerDelivery
   describe Deliveries do
-    before(:each) do
-      RedisCacheMailerDelivery.install
-      Redis.current = Redis.new(:host => '127.0.0.1', :port => 6379)
-    end
     
     describe ".all" do
       let(:object) { Mail::Message.new}
