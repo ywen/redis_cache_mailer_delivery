@@ -1,7 +1,11 @@
 # RedisCacheMailerDelivery
 
-TODO: Write a gem description
+If you are using Resque for sending mails asynchronously, and you want to test the mail sending asynchronously in your integration tests, then you can use this gem for just that.
 
+The gem adds a new delivery method to the ActionMailer and it stores the marshaled Mail::Message being delivered into a redis list which can be fetched by any other processes.
+
+A separate Resque worker process deliver emails, which being written into a redis storage. The test process (such as a cucumber step can then fetch the mail for examination).
+ 
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -18,7 +22,18 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+In a Rails project, in your environment files such as config/environments/cucumber.rb
+
+```ruby
+config.action_mailer.delivery_method = :redis_cache
+config.action_mailer.redis_cache_settings = { :redis_key_name => "a_key_name_for_all_stored_emails" }
+```
+
+You don't have to define the redis_key_name, the default is 
+
+```ruby
+redis_cache_mailer_delivery:mail_messages
+```
 
 ## Contributing
 

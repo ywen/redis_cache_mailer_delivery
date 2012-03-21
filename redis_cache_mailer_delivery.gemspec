@@ -14,6 +14,6 @@ Gem::Specification.new do |gem|
   gem.name          = "redis_cache_mailer_delivery"
   gem.require_paths = ["lib"]
   gem.version       = RedisCacheMailerDelivery::VERSION
-  gem.add_runtime_dependency(%q<redis-rb>)
+  gem.add_runtime_dependency(%q<redis>)
   gem.add_runtime_dependency(%q<redis-objects>)
 end
