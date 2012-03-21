@@ -1,7 +1,7 @@
 require 'action_mailer'
 require 'redis_cache_mailer_delivery/version'
 require 'redis_cache_mailer_delivery/mail/cache_delivery'
-require 'redis_cache_mailer_delivery/action_mailer/base'
+require 'redis_cache_mailer_delivery/deliveries'
 
 module RedisCacheMailerDelivery
   class << self
