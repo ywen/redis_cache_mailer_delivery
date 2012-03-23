@@ -1,16 +1,8 @@
 module Mail
   #
-  # Performs deliveries to temporary cache file, so mails can accessed from
+  # Performs deliveries to redis storage, so mails can accessed from
   # other processes.
   #
-  # Default location of files is:
-  #   -  "tmp/cache/action_mailer_cache_deliveries.cache" if you use Rails
-  #   - "/tmp/cache/action_mailer_cache_deliveries.cache" if you don't use Rails
-  #
-  # However, you can overwrite location in configuration:
-  #
-  # @example
-  #   config.action_mailer.cache_settings = { location: "custom/path" }
   #
   class CacheDelivery
 
