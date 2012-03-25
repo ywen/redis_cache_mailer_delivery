@@ -48,6 +48,10 @@ RedisCacheMailerDelivery::Deliveries.all
 
 to access all the mails
 
+## Singleton objects
+
+Some objects that cannot be marshaled because it is a Singleton. In that case, if the object respond to marshallable! method, the gem will call the method before it saves the message to the redis store.
+
 ## Contributing
 
 1. Fork it
