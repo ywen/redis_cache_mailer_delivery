@@ -1,0 +1,2 @@
+- 0.0.4
+  * Add the ability to marshal a unmarshalable object, given the object provides marshallable method that make the object to be marshallable.
