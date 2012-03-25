@@ -48,9 +48,13 @@ RedisCacheMailerDelivery::Deliveries.all
 
 to access all the mails
 
-## Singleton objects
+## Sequel
 
-Some objects that cannot be marshaled because it is a Singleton. In that case, if the object respond to marshallable method, the gem will call the method before it saves the message to the redis store.
+If you use Sequel and you set a sequel record into the Mail::Message (```mail.record = record```), the chances are you will encounter an error where you cannot serialize the message since the record might be a singleton. The gem has a builtin fix for this by using marshallable! method provied by Sequel since 3.6.0
+
+## Other unmarshallable objects
+
+The code will find if the mail being passed in responds to ```marshallable``` method, if it does, the code will call ```marshallable``` method before send it to the redis store
 
 ## Contributing
 
