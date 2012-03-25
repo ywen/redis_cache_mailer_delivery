@@ -17,7 +17,7 @@ module Mail
     # @api private
     def deliver!(mail)
       list = Redis::List.new settings[:redis_key_name], :marshal => true
-      object = mail.respond_to?(:marshallable!) ? mail.marshallable! : mail
+      object = mail.respond_to?(:marshallable) ? mail.marshallable : mail
       list << object
     end
 
