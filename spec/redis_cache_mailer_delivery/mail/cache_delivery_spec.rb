@@ -13,6 +13,19 @@ module Mail
         subject.deliver!(object)
         Redis::List.new("a-name", :marshal => true).values[0].should eq(object)
       end
+
+      context "when the object respond to marshallable!" do
+        before(:each) do
+          def object.marshallable!
+            Mail::Message.new
+          end
+        end
+        
+        it "calls the method before send to redis" do
+          object.should_receive(:marshallable!).and_return Mail::Message.new
+          subject.deliver!(object)
+        end
+      end
     end
   end
 end
