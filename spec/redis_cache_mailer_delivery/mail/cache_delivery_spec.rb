@@ -13,24 +13,6 @@ module Mail
         subject.deliver!(object)
         Redis::List.new("a-name", :marshal => true).values[0].should eq(object)
       end
-
-      it "tries to make it marshallable first by passing it through SequelMarshallableMailMessage" do
-        SequelMarshallableMailMessage.should_receive(:marshallable).with(object).and_return object
-        subject.deliver!(object)
-      end
-
-      context "when the object respond to marshallable" do
-        before(:each) do
-          def object.marshallable
-            Mail::Message.new
-          end
-        end
-        
-        it "calls the method before send to redis" do
-          object.should_receive(:marshallable).and_return Mail::Message.new
-          subject.deliver!(object)
-        end
-      end
     end
   end
 end

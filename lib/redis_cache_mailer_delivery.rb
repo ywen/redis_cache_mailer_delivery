@@ -8,7 +8,8 @@ module RedisCacheMailerDelivery
   class << self
     def install
       ActionMailer::Base.add_delivery_method :redis_cache, Mail::CacheDelivery,
-        :redis_key_name => "redis_cache_mailer_delivery:mail_messages"
+        :redis_key_name => "redis_cache_mailer_delivery:mail_messages",
+        :marshallable_converters => []
     end
 
   end # << self
