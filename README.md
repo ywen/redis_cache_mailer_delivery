@@ -41,7 +41,7 @@ You don't have to define the settings, the default ```redis_key_name``` is
 "redis_cache_mailer_delivery:mail_messages"
 ```
 
-the default ```marshallable_converters``` is empty array
+the default ```marshallable_converters``` is an empty array
 
 The meaning of ```marshallable_converters``` will be discussed in the next section.
 
@@ -64,6 +64,20 @@ The remedy provided by this gem is to provide a mechanism to make the mail to be
 When it is a class, the class must have a class method ```marshallable``` which accpets the mail object as the only param. The method will take the mail and convert it into a marshallable object.
 
 When it is a symbol, it means it is a built-in converter. For example ```:sequel_record_marshallable``` will convert a Mail::Message containg a singlton Sequel record into marshallable one by use Sequel's ```marshallable!``` method.
+
+Currently the built-in only converter is ```:sequel_record_marshallable```
+
+The order of the ```:marshallable_converters``` could be important. The gem always goes through the converters in the order.
+
+So for example, if you have:
+
+```ruby
+config.action_mailer.redis_cache_settings = { :marshallable_converters => [Marshallable::Attrubute2, Marshallable::Attrubute1] }
+```
+
+The gem calls: ```object1 = Marshallable::Attrubute2.marshallable(mail)```, then it calls ```object2 = Marshallable::Attrubute1.marshallable(object1)```
+ 
+So if you must have ```attrubute1``` to be marshallable first, then make the ```attrubute2``` marshallable. You have to switch the order in this example.
 
 ## Contributing
 
