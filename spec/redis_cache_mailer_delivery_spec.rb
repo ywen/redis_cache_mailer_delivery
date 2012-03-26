@@ -4,7 +4,7 @@ describe RedisCacheMailerDelivery do
   describe ".install" do
     it "adds a delivery method to the ActionMailer" do
       described_class.install
-      ActionMailer::Base.delivery_methods.should include(:redis_cache => Mail::CacheDelivery)
+      ActionMailer::Base.delivery_methods.should include(:redis_cache => RedisCacheMailerDelivery::CacheDelivery)
     end
 
     it "defaults the redis_key_name to redis_cache_mailer_delivery:mail_messages" do
