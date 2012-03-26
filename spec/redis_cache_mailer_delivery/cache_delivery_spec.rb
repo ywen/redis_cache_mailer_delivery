@@ -2,8 +2,8 @@ require File.expand_path(File.join(File.dirname(__FILE__), "..", "spec_helper"))
 
 module RedisCacheMailerDelivery
   describe CacheDelivery do
-    subject {described_class.new :redis_key_name => "a-name", :marshallable_converters => []}
     describe "#deliver!" do
+      subject {described_class.new :redis_key_name => "a-name", :marshallable_converters => []}
       let(:object) {Mail::Message.new}
 
       after(:each) do

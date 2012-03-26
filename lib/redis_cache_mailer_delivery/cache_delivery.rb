@@ -6,18 +6,18 @@ module RedisCacheMailerDelivery
   #
   class CacheDelivery
 
-    # @attr [Hash] settings Settings for CacheDelivery
-    attr_accessor :settings
+    attr_reader :settings
+    private :settings
 
     # @api private
     def initialize(settings)
-      @settings = settings
+      @settings = Settings.new(settings)
     end
 
     # @api private
     def deliver!(mail)
-      list = Redis::List.new settings[:redis_key_name], :marshal => true
-      settings[:marshallable_converters].each do |setting|
+      list = Redis::List.new settings.redis_key_name, :marshal => true
+      settings.marshallable_converters.each do |setting|
         mail = MarshallableConverterSetting.new(setting).marshallable_class.marshallable(mail)
       end
       list << mail
