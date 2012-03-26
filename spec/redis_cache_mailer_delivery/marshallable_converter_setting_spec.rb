@@ -4,7 +4,7 @@ module RedisCacheMailerDelivery
   describe MarshallableConverterSetting do
     describe ".builtin_settings" do
       it "returns the hash of builtin marshallable converters" do
-        described_class.builtin_settings.should eq({:sequel_record_marshallable => Mail::SequelMarshallableMailMessage})
+        described_class.builtin_settings.should eq({:sequel_record_marshallable => RedisCacheMailerDelivery::Converters::SequelMarshallableMailMessage})
       end
     end
     describe "#marshallable_class" do

@@ -7,6 +7,6 @@ guard :rspectacle, :cli => '--format documentation --backtrace' do
 
   watch(%r{^spec/.+_spec\.rb$})
   watch('lib/redis_cache_mailer_delivery.rb')  { ['spec/redis_cache_mailer_delivery_spec.rb', 'lib/redis_cache_mailer_delivery.rb' ] }
-  watch('lib/redis_cache_mailer_delivery/mail/(.+).rb')  {|m| ["spec/redis_cache_mailer_delivery/mail/#{m[1]}_spec.rb", "lib/redis_cache_mailer_delivery/mail/#{m[1]}.rb" ] }
-  watch('lib/redis_cache_mailer_delivery/(.+).rb')  {|m| ["spec/redis_cache_mailer_delivery/#{m[1]}_spec.rb", "lib/redis_cache_mailer_delivery/#{m[1]}.rb" ] }
+  watch(/lib\/redis_cache_mailer_delivery\/converters\/(.+).rb/)  {|m| ["spec/redis_cache_mailer_delivery/converters/#{m[1]}_spec.rb", "lib/redis_cache_mailer_delivery/converters/#{m[1]}.rb" ] }
+  watch(/lib\/redis_cache_mailer_delivery\/(.+).rb/)  {|m| ["spec/redis_cache_mailer_delivery/#{m[1]}_spec.rb", "lib/redis_cache_mailer_delivery/#{m[1]}.rb" ] }
 end

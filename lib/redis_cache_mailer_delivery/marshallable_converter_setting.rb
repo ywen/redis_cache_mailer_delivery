@@ -3,7 +3,7 @@ module RedisCacheMailerDelivery
     attr_reader :converter_name
     class << self
       def builtin_settings
-        { :sequel_record_marshallable => Mail::SequelMarshallableMailMessage }
+        { :sequel_record_marshallable => RedisCacheMailerDelivery::Converters::SequelMarshallableMailMessage }
       end
     end
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Mail::SequelMarshallableMailMessage do
+describe RedisCacheMailerDelivery::Converters::SequelMarshallableMailMessage do
   let(:object) {Class.new.new}
   describe "#marshallable" do
     context "when the message responds to the record message" do
