@@ -31,14 +31,19 @@ In a Rails project, in your environment files such as config/environments/cucumb
 
 ```ruby
 config.action_mailer.delivery_method = :redis_cache
-config.action_mailer.redis_cache_settings = { :redis_key_name => "a_key_name_for_all_stored_emails" }
+config.action_mailer.redis_cache_settings = { :redis_key_name => "a_key_name_for_all_stored_emails",
+:marshallable_converters => [:sequel_record_marshallable, Marshallable::Attrubute1] }
 ```
 
-You don't have to define the redis_key_name, the default is 
+You don't have to define the settings, the default ```redis_key_name``` is 
 
 ```ruby
 "redis_cache_mailer_delivery:mail_messages"
 ```
+
+the default ```marshallable_converters``` is empty array
+
+The meaning of ```marshallable_converters``` will be discussed in the next section.
 
 All the mails being delivered will be written into the redis storage. You can use
 
@@ -48,13 +53,17 @@ RedisCacheMailerDelivery::Deliveries.all
 
 to access all the mails
 
-## Sequel
+## Marshallable Converters
 
-If you use Sequel and you set a sequel record into the Mail::Message (```mail.record = record```), the chances are you will encounter an error where you cannot serialize the message since the record might be a singleton. The gem has a builtin fix for this by using marshallable! method provied by Sequel since 3.6.0
+If you use Sequel and you set a sequel record into the Mail::Message (```mail.record = record```), the chances are you will encounter an error where you cannot serialize the message since the record might be a singleton.
 
-## Other unmarshallable objects
+The remedy provided by this gem is to provide a mechanism to make the mail to be marshallable before it marshals it, as well as some built-in class for making the object to be marshallable.
 
-The code will find if the mail being passed in responds to ```marshallable``` method, if it does, the code will call ```marshallable``` method before send it to the redis store
+```marshallable_converters``` setting accepts an array. Each element could be a symbol, or a class. 
+
+When it is a class, the class must have a class method ```marshallable``` which accpets the mail object as the only param. The method will take the mail and convert it into a marshallable object.
+
+When it is a symbol, it means it is a built-in converter. For example ```:sequel_record_marshallable``` will convert a Mail::Message containg a singlton Sequel record into marshallable one by use Sequel's ```marshallable!``` method.
 
 ## Contributing
 

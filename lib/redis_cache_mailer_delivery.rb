@@ -1,5 +1,6 @@
 require 'action_mailer'
 require 'redis_cache_mailer_delivery/version'
+require 'redis_cache_mailer_delivery/marshallable_converter_setting'
 require 'redis_cache_mailer_delivery/cache_delivery'
 require 'redis_cache_mailer_delivery/converters/sequel_marshallable_mail_message'
 require 'redis_cache_mailer_delivery/deliveries'
